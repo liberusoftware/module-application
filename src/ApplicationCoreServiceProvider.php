@@ -2,7 +2,6 @@
 
 namespace Liberu\Foundation\ApplicationCore;
 
-use Illuminate\Support\Number;
 use Illuminate\Support\ServiceProvider;
 use Liberu\Foundation\ApplicationCore\Contracts\Clock;
 use Liberu\Foundation\ApplicationCore\Contracts\IdentifierFactory;
@@ -24,7 +23,6 @@ final class ApplicationCoreServiceProvider extends ServiceProvider
     public function boot(EnvironmentValidator $validator): void
     {
         $validator->validate();
-        Number::useCurrency(config('app.currency', 'USD'));
         $this->loadRoutesFrom(__DIR__.'/../routes/health.php');
         $this->publishes([__DIR__.'/../config/application-core.php' => config_path('application-core.php')], 'application-core-config');
     }
